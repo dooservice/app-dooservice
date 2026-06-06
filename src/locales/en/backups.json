@@ -1,0 +1,63 @@
+{
+  "title": "Backups",
+  "create": "Create backup",
+  "upload": "Upload",
+  "download": "Download",
+  "restore": "Restore",
+  "count_one": "{{count}} backup",
+  "count_other": "{{count}} backups",
+  "noBackupsYet": "No backups yet",
+  "backupTypes": {
+    "full":     "Full",
+    "database": "Database"
+  },
+  "date": "Date",
+  "type": "Type",
+  "status": "Status",
+  "size": "Size",
+  "description": "Description",
+  "statuses": {
+    "completed":   "Completed",
+    "in_progress": "In progress",
+    "failed":      "Failed",
+    "dropped":     "Dropped"
+  },
+  "onlyS3": "Only available for S3 backups",
+  "createDialog": {
+    "title": "Create backup",
+    "description": "Create a snapshot of <strong>{{name}}</strong>.",
+    "backupType": "Backup type",
+    "full": "Full",
+    "fullDesc": "Database + filestore",
+    "database": "Database only",
+    "databaseDesc": "Smaller, faster",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "e.g. before migration",
+    "started": "Backup started"
+  },
+  "uploadDialog": {
+    "title": "Upload backup",
+    "description": "Upload a .zip backup file for <strong>{{name}}</strong>. The file will be uploaded directly to S3.",
+    "selectFile": "Click to select a .zip file",
+    "uploading": "Uploading to S3…",
+    "registering": "Registering backup…",
+    "imported": "Backup imported",
+    "importedDesc": "The backup is now available in the list.",
+    "failed": "Upload failed"
+  },
+  "schedule": {
+    "title": "Automatic Backups",
+    "descEnabled": "Backups will run once a day at the configured time.",
+    "descDisabled": "Enable to configure a recurring daily backup.",
+    "runAt": "Run at",
+    "saved": "Backup schedule saved",
+    "saveFailed": "Failed to save schedule",
+    "save": "Save schedule"
+  },
+  "restoreDialog": {
+    "title": "Restore backup",
+    "description": "This will overwrite the current database and filestore of <strong>{{name}}</strong> with the backup from {{date}}. This cannot be undone.",
+    "started": "Restore started",
+    "failed": "Restore failed"
+  }
+}

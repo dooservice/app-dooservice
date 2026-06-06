@@ -1,0 +1,25 @@
+{
+  "cancel": "Cancel",
+  "save": "Save",
+  "create": "Create",
+  "delete": "Delete",
+  "close": "Close",
+  "confirm": "Confirm",
+  "loading": "Loading…",
+  "comingSoon": "Coming soon",
+  "optional": "optional",
+  "settings": "Settings",
+  "signOut": "Sign Out",
+  "darkMode": "Dark mode",
+  "lightMode": "Light mode",
+  "actions": {
+    "open": "Open"
+  },
+  "betaPreview": "This is a <strong>beta preview</strong>. Features may change and bugs may occur — your feedback is welcome.",
+  "copy": "Copy",
+  "copied": "Copied",
+  "aria": {
+    "accountMenu": "Account menu",
+    "projectActions": "Project actions"
+  }
+}

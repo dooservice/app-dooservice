@@ -1,0 +1,92 @@
+{
+  "projects": "Projects",
+  "manageProjects": "Manage your Odoo projects",
+  "appsStore": "Apps Store",
+  "browseApps": "Browse and install Odoo apps",
+  "dashboard": "Dashboard",
+  "welcome": "Welcome, {{name}}",
+  "welcomeGeneric": "Welcome",
+  "newProject": "New Project",
+  "create": "Create",
+  "failedToLoad": "Failed to load projects. Make sure agents are online.",
+  "empty": {
+    "title": "No projects yet",
+    "description": "Create your first project to start deploying."
+  },
+  "card": {
+    "created": "Created {{date}}",
+    "open": "Open",
+    "config": "Config",
+    "lock": "Lock project",
+    "unlock": "Unlock project",
+    "delete": "Delete",
+    "deleteTitle": "Delete Project",
+    "deleteDescription": "Are you sure you want to delete <strong>{{name}}</strong>? All environments will be destroyed. This cannot be undone.",
+    "deleteConfirm": "Delete Project"
+  },
+  "config": {
+    "title": "Project Configuration",
+    "description": "Manage deploy keys and private submodule access for this project."
+  },
+  "deployKey": {
+    "title": "Repository Deploy Key",
+    "instruction": "Add this key to your repository under Settings → Deploy keys.",
+    "regenerate": "Regenerate",
+    "empty": "No deploy key yet. Generate one to give this project SSH read access to your repository.",
+    "generate": "Generate Deploy Key",
+    "generateFailed": "Failed to generate key"
+  },
+  "submodule": {
+    "title": "Submodule Repositories",
+    "instruction": "For each private submodule, add its SSH URL and copy the generated deploy key into the submodule repo's settings.",
+    "placeholder": "git@github.com:org/repo.git",
+    "add": "Add",
+    "addFailed": "Failed to add submodule",
+    "removeFailed": "Failed to remove",
+    "empty": "No submodule repositories added.",
+    "keyInstruction": "Add this key to the submodule repo under Settings → Deploy keys.",
+    "urlRequired": "Repository URL is required"
+  },
+  "provisionFailed": "Provision failed",
+  "validation": {
+    "nameRequired": "Project name is required",
+    "nameMin": "Minimum 3 characters",
+    "nameMax": "Maximum 40 characters",
+    "nameFormat": "Only lowercase letters, numbers, and hyphens. No spaces or special characters.",
+    "regionRequired": "Select a region",
+    "versionRequired": "Select a version",
+    "timezoneRequired": "Timezone is required",
+    "languageRequired": "Select a language",
+    "emailRequired": "Valid email required",
+    "passwordMin": "Minimum 8 characters"
+  },
+  "createForm": {
+    "title": "Create a new project",
+    "description": "Configure your Odoo project settings.",
+    "projectName": "Project Name",
+    "projectNameHelper": "Lowercase, hyphens only. Used as subdomain.",
+    "nameTaken": "This name is already taken.",
+    "checkingName": "Checking availability...",
+    "nameAvailable": "Name is available.",
+    "odooVersion": "Odoo Version",
+    "latest": "Latest",
+    "region": "Region",
+    "noAgents": "No agents online. Please check your infrastructure.",
+    "adminAccount": "Admin Account",
+    "adminDescription": "Credentials for the initial Odoo admin user.",
+    "email": "Email",
+    "password": "Password",
+    "extraOptions": "Extra options",
+    "timezone": "Timezone",
+    "language": "Language",
+    "selectTimezone": "Select timezone",
+    "selectLanguage": "Select language",
+    "repository": "Repository",
+    "repoDescription": "Optionally link a GitHub repository for code deployment.",
+    "connectGitHub": "Connect GitHub to create or link a repository.",
+    "connect": "Connect →",
+    "owner": "Owner",
+    "newRepoHelper": "A new private repository will be created in your GitHub account.",
+    "createProject": "Create Project"
+  }
+}

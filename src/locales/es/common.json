@@ -1,0 +1,25 @@
+{
+  "cancel": "Cancelar",
+  "save": "Guardar",
+  "create": "Crear",
+  "delete": "Eliminar",
+  "close": "Cerrar",
+  "confirm": "Confirmar",
+  "loading": "Cargando…",
+  "comingSoon": "Próximamente",
+  "optional": "opcional",
+  "settings": "Configuración",
+  "signOut": "Cerrar sesión",
+  "darkMode": "Modo oscuro",
+  "lightMode": "Modo claro",
+  "actions": {
+    "open": "Abrir"
+  },
+  "betaPreview": "Esta es una <strong>versión beta</strong>. Las funciones pueden cambiar y pueden ocurrir errores — tu opinión es bienvenida.",
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "aria": {
+    "accountMenu": "Menú de cuenta",
+    "projectActions": "Acciones del proyecto"
+  }
+}

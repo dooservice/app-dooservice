@@ -1,0 +1,23 @@
+{
+  "count":         "{{count}} deployments",
+  "noDeployments": "No deployments yet. They will appear after a git pull.",
+  "revision":      "Revision",
+  "date":          "Date",
+  "commit":        "Commit",
+  "branch":        "Branch",
+  "status":        "Status",
+  "rollback":      "Rollback",
+  "statuses": {
+    "success":     "Success",
+    "failed":      "Failed",
+    "rolled_back": "Rolled back",
+    "dropped":     "Dropped"
+  },
+  "rollbackDialog": {
+    "title":       "Rollback deployment?",
+    "description": "This will restore <strong>{{name}}</strong> to commit <code>{{commit}}</code> (revision #{{revision}}). The database will be restored from the pre-deploy backup.",
+    "confirm":     "Yes, rollback",
+    "started":     "Rollback started",
+    "failed":      "Rollback failed"
+  }
+}

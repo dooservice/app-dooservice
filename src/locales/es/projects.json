@@ -1,0 +1,92 @@
+{
+  "projects": "Proyectos",
+  "manageProjects": "Administra tus proyectos Odoo",
+  "appsStore": "Tienda de apps",
+  "browseApps": "Explora e instala apps de Odoo",
+  "dashboard": "Panel",
+  "welcome": "Bienvenido, {{name}}",
+  "welcomeGeneric": "Bienvenido",
+  "newProject": "Nuevo proyecto",
+  "create": "Crear",
+  "failedToLoad": "Error al cargar proyectos. Asegúrate de que los agentes estén activos.",
+  "empty": {
+    "title": "Sin proyectos aún",
+    "description": "Crea tu primer proyecto para empezar a desplegar."
+  },
+  "card": {
+    "created": "Creado {{date}}",
+    "open": "Abrir",
+    "config": "Configurar",
+    "lock": "Bloquear proyecto",
+    "unlock": "Desbloquear proyecto",
+    "delete": "Eliminar",
+    "deleteTitle": "Eliminar proyecto",
+    "deleteDescription": "¿Estás seguro de que quieres eliminar <strong>{{name}}</strong>? Todos los entornos serán destruidos. Esta acción no se puede deshacer.",
+    "deleteConfirm": "Eliminar proyecto"
+  },
+  "config": {
+    "title": "Configuración del proyecto",
+    "description": "Administra las claves de despliegue y el acceso a submódulos privados para este proyecto."
+  },
+  "deployKey": {
+    "title": "Clave de despliegue del repositorio",
+    "instruction": "Añade esta clave a tu repositorio en Ajustes → Claves de despliegue.",
+    "regenerate": "Regenerar",
+    "empty": "Sin clave de despliegue. Genera una para dar a este proyecto acceso SSH de lectura a tu repositorio.",
+    "generate": "Generar clave de despliegue",
+    "generateFailed": "Error al generar la clave"
+  },
+  "submodule": {
+    "title": "Repositorios de submódulos",
+    "instruction": "Para cada submódulo privado, añade su URL SSH y copia la clave generada en la configuración del repositorio.",
+    "placeholder": "git@github.com:org/repo.git",
+    "add": "Añadir",
+    "addFailed": "Error al añadir submódulo",
+    "removeFailed": "Error al eliminar",
+    "empty": "No hay repositorios de submódulos añadidos.",
+    "keyInstruction": "Añade esta clave al repo del submódulo en Ajustes → Claves de despliegue.",
+    "urlRequired": "La URL del repositorio es obligatoria"
+  },
+  "provisionFailed": "Error al aprovisionar",
+  "validation": {
+    "nameRequired": "El nombre del proyecto es obligatorio",
+    "nameMin": "Mínimo 3 caracteres",
+    "nameMax": "Máximo 40 caracteres",
+    "nameFormat": "Solo minúsculas, números y guiones. Sin espacios ni caracteres especiales.",
+    "regionRequired": "Selecciona una región",
+    "versionRequired": "Selecciona una versión",
+    "timezoneRequired": "La zona horaria es obligatoria",
+    "languageRequired": "Selecciona un idioma",
+    "emailRequired": "Email válido requerido",
+    "passwordMin": "Mínimo 8 caracteres"
+  },
+  "createForm": {
+    "title": "Crear nuevo proyecto",
+    "description": "Configura los ajustes de tu proyecto Odoo.",
+    "projectName": "Nombre del proyecto",
+    "projectNameHelper": "Solo minúsculas y guiones. Se usa como subdominio.",
+    "nameTaken": "Este nombre ya está en uso.",
+    "checkingName": "Verificando disponibilidad...",
+    "nameAvailable": "El nombre está disponible.",
+    "odooVersion": "Versión de Odoo",
+    "latest": "Más reciente",
+    "region": "Región",
+    "noAgents": "Sin agentes en línea. Revisa tu infraestructura.",
+    "adminAccount": "Cuenta de administrador",
+    "adminDescription": "Credenciales para el usuario administrador inicial de Odoo.",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "extraOptions": "Opciones adicionales",
+    "timezone": "Zona horaria",
+    "language": "Idioma",
+    "selectTimezone": "Selecciona zona horaria",
+    "selectLanguage": "Selecciona idioma",
+    "repository": "Repositorio",
+    "repoDescription": "Opcionalmente vincula un repositorio GitHub para despliegue de código.",
+    "connectGitHub": "Conecta GitHub para crear o vincular un repositorio.",
+    "connect": "Conectar →",
+    "owner": "Propietario",
+    "newRepoHelper": "Se creará un repositorio privado en tu cuenta de GitHub.",
+    "createProject": "Crear proyecto"
+  }
+}

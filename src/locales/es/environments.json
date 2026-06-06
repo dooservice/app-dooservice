@@ -1,0 +1,158 @@
+{
+  "tabs": {
+    "overview":    "Vista general",
+    "backups":     "Copias de seguridad",
+    "logs":        "Registros",
+    "deployments": "Despliegues",
+    "settings":    "Configuración"
+  },
+  "selectFirst": "Selecciona un entorno primero.",
+  "sidebar": {
+    "production": "Producción",
+    "development": "Desarrollo",
+    "newEnv": "Nuevo entorno",
+    "add": "Añadir entorno"
+  },
+  "runtime": {
+    "running":      "En ejecución",
+    "stopped":      "Detenido",
+    "starting":     "Iniciando",
+    "stopping":     "Deteniéndose",
+    "provisioning": "Aprovisionando",
+    "failed":       "Fallido"
+  },
+  "modes": {
+    "development": "Desarrollo",
+    "production":  "Producción"
+  },
+  "logs": {
+    "live":          "En vivo",
+    "paused":        "Pausado",
+    "lines":         "{{count}} líneas",
+    "noLogs":        "No hay registros disponibles.",
+    "refresh":       "Actualizar",
+    "mustBeRunning": "El entorno debe estar en ejecución para ver los registros."
+  },
+  "noEnvs": {
+    "title":       "Sin entornos aún",
+    "description": "Usa el botón + junto a cada grupo en la barra lateral para crear uno."
+  },
+  "overview": {
+    "openInstance": "Abrir instancia",
+    "created": "Creado",
+    "updated": "Actualizado",
+    "start": "Iniciar",
+    "stop": "Detener",
+    "clone": "Clonar",
+    "rebuild": "Reconstruir",
+    "startFailed": "Error al iniciar",
+    "stopFailed": "Error al detener",
+    "rebuildFailed": "Error al reconstruir",
+    "rebuildDialog": {
+      "title":       "¿Reconstruir entorno?",
+      "description": "Esto borrará todos los datos e instalará Odoo desde cero. Esta acción no se puede deshacer.",
+      "confirm":     "Sí, reconstruir"
+    }
+  },
+  "clone": {
+    "title":         "Clonar entorno",
+    "description":   "Crea una copia de <strong>{{name}}</strong> como nuevo entorno de desarrollo en este proyecto.",
+    "newBranch":     "Crear nueva rama",
+    "branchExists":  "Esta rama ya existe. Usa \"misma rama que el origen\" o elige otro nombre.",
+    "branchFork":    "Bifurcada desde la rama del entorno origen.",
+    "sameBranch":    "El entorno clonado usará la misma rama que el origen.",
+    "neutralize":    "Neutralizar entorno",
+    "neutralizeDesc":"Desactiva acciones programadas, correos e integraciones externas. Recomendado para desarrollo.",
+    "cloneBtn":      "Clonar",
+    "failed":        "Error al clonar"
+  },
+  "provision": {
+    "provision": {
+      "title":   "Aprovisionando entorno",
+      "done":    "El entorno está listo",
+      "failed":  "Error en el aprovisionamiento",
+      "running": "Configurando entorno..."
+    },
+    "clone": {
+      "title":   "Clonando entorno",
+      "done":    "Entorno clonado correctamente",
+      "failed":  "Error al clonar",
+      "running": "Clonando entorno..."
+    },
+    "rebuild": {
+      "title":   "Reconstruyendo entorno",
+      "done":    "Entorno reconstruido correctamente",
+      "failed":  "Error al reconstruir",
+      "running": "Reconstruyendo entorno..."
+    },
+    "takesMinutes": "Esto puede tardar unos minutos..."
+  },
+  "settings": {
+    "dangerZone": "Zona de peligro",
+    "deleteEnv":  "Eliminar entorno",
+    "deleteDesc": "Eliminar este entorno destruirá permanentemente todos sus datos y contenedores. Esta acción no se puede deshacer.",
+    "deleteDialog": {
+      "title":       "Eliminar entorno",
+      "description": "¿Estás seguro de que quieres eliminar <strong>{{name}}</strong>? Esta acción no se puede deshacer."
+    }
+  },
+  "domain": {
+    "title":            "Dominio personalizado",
+    "validDomainError": "Introduce un dominio válido",
+    "howTo":            "Cómo conectar tu dominio",
+    "step1":        "Introduce el subdominio que quieres usar (ej. odoo.miempresa.com).",
+    "step2":        "Haz clic en \"Añadir dominio\" — te mostraremos el CNAME destino que debes configurar.",
+    "step3":        "Ve a tu proveedor DNS y añade un registro CNAME apuntando tu subdominio al destino mostrado.",
+    "step4":        "Vuelve y haz clic en \"Verificar\" cuando el registro esté guardado. Los cambios DNS pueden tardar unos minutos en propagarse.",
+    "addDomain":    "Añadir dominio",
+    "addFailed":    "Error al añadir dominio",
+    "dnsRecord":    "Añade este registro en tu proveedor DNS",
+    "type":         "Tipo",
+    "name":         "Nombre",
+    "target":       "Valor (destino)",
+    "domainActive": "Tu dominio está activo y apunta correctamente a este entorno.",
+    "verify":       "Verificar",
+    "verifyFailed": "Error en la verificación",
+    "remove":       "Eliminar",
+    "removeFailed": "Error al eliminar dominio"
+  },
+  "domainStatus": {
+    "verified": "Verificado",
+    "failed":   "Fallido",
+    "pending":  "Pendiente"
+  },
+  "provisionDialog": {
+    "title":           "Nuevo entorno de desarrollo",
+    "branch":          "Rama",
+    "branchDefault":   "Por defecto",
+    "branchExisting":  "Rama existente",
+    "branchNew":       "Nueva rama",
+    "defaultBranchDesc": "Usa la rama por defecto del repositorio — no se crean ramas nuevas",
+    "selectBranch":    "Selecciona una rama",
+    "newBranchPlaceholder": "nombre-nueva-rama",
+    "forkFrom":        "Bifurcar desde",
+    "defaultBranch":   "Rama por defecto",
+    "neutralize":      "Neutralizar entorno",
+    "neutralizeDesc":  "Desactiva acciones programadas, correos e integraciones externas. Recomendado para desarrollo.",
+    "adminEmail":      "Email de administrador",
+    "adminPassword":   "Contraseña de administrador",
+    "provisionBtn":    "Crear entorno"
+  },
+  "workers": {
+    "title":       "Workers",
+    "description": "1 worker se recomienda para desarrollo. Usa 2+ workers para cargas de producción.",
+    "save":        "Guardar workers",
+    "saved":       "Workers actualizados",
+    "saveFailed":  "Error al actualizar workers",
+    "options": {
+      "1_label": "1 worker",
+      "1_desc":  "Modo desarrollo",
+      "2_label": "2 workers",
+      "2_desc":  "Producción ligera",
+      "4_label": "4 workers",
+      "4_desc":  "Producción estándar",
+      "8_label": "8 workers",
+      "8_desc":  "Alto tráfico"
+    }
+  }
+}

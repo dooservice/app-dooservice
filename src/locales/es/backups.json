@@ -1,0 +1,63 @@
+{
+  "title": "Copias de seguridad",
+  "create": "Crear copia de seguridad",
+  "upload": "Subir",
+  "download": "Descargar",
+  "restore": "Restaurar",
+  "count_one": "{{count}} copia de seguridad",
+  "count_other": "{{count}} copias de seguridad",
+  "noBackupsYet": "Sin copias de seguridad",
+  "backupTypes": {
+    "full":     "Completa",
+    "database": "Base de datos"
+  },
+  "date": "Fecha",
+  "type": "Tipo",
+  "status": "Estado",
+  "size": "Tamaño",
+  "description": "Descripción",
+  "statuses": {
+    "completed":   "Completado",
+    "in_progress": "En progreso",
+    "failed":      "Fallido",
+    "dropped":     "Descartado"
+  },
+  "onlyS3": "Solo disponible para backups en S3",
+  "createDialog": {
+    "title": "Crear copia de seguridad",
+    "description": "Crear una instantánea de <strong>{{name}}</strong>.",
+    "backupType": "Tipo de copia",
+    "full": "Completa",
+    "fullDesc": "Base de datos + filestore",
+    "database": "Solo base de datos",
+    "databaseDesc": "Más pequeña y rápida",
+    "descriptionLabel": "Descripción",
+    "descriptionPlaceholder": "ej. antes de la migración",
+    "started": "Copia de seguridad iniciada"
+  },
+  "uploadDialog": {
+    "title": "Subir copia de seguridad",
+    "description": "Sube un archivo .zip de backup para <strong>{{name}}</strong>. El archivo se subirá directamente a S3.",
+    "selectFile": "Haz clic para seleccionar un archivo .zip",
+    "uploading": "Subiendo a S3…",
+    "registering": "Registrando copia de seguridad…",
+    "imported": "Copia importada",
+    "importedDesc": "La copia de seguridad ya está disponible en la lista.",
+    "failed": "Error al subir"
+  },
+  "schedule": {
+    "title": "Copias automáticas",
+    "descEnabled": "Las copias se ejecutarán una vez al día a la hora configurada.",
+    "descDisabled": "Activa para configurar una copia diaria recurrente.",
+    "runAt": "Ejecutar a las",
+    "saved": "Programación de copias guardada",
+    "saveFailed": "Error al guardar la programación",
+    "save": "Guardar programación"
+  },
+  "restoreDialog": {
+    "title": "Restaurar copia de seguridad",
+    "description": "Esto sobreescribirá la base de datos y el filestore de <strong>{{name}}</strong> con la copia de {{date}}. Esta acción no se puede deshacer.",
+    "started": "Restauración iniciada",
+    "failed": "Error en la restauración"
+  }
+}
