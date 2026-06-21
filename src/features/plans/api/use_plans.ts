@@ -1,21 +1,20 @@
 import { queryOptions, useQuery } from '@tanstack/react-query'
 import { api } from '@/lib/api'
-import type { CurrentPlanResponse, Plan } from '../types/plan.types'
+import type { Plan, ProjectPlanResponse } from '../types/plan.types'
 
 const plansQuery = queryOptions({
   queryKey: ['plans'] as const,
   queryFn:  () => api.get('api/plans').json<{ plans: Plan[] }>().then(r => r.plans),
 })
 
-const currentPlanQuery = queryOptions({
-  queryKey: ['plans', 'me'] as const,
-  queryFn:  () => api.get('api/me/plan').json<CurrentPlanResponse>(),
-})
-
 export function usePlans() {
   return useQuery(plansQuery)
 }
 
-export function useCurrentPlan() {
-  return useQuery(currentPlanQuery)
+export function useProjectPlan(projectId: string) {
+  return useQuery({
+    queryKey: ['plans', 'project', projectId] as const,
+    queryFn:  () => api.get(`api/projects/${projectId}/plan`).json<ProjectPlanResponse>(),
+    enabled:  !!projectId,
+  })
 }

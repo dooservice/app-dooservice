@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { LockIcon } from 'lucide-react'
 import { useSetCustomDomain, useRemoveCustomDomain, useVerifyCustomDomain } from '@/features/environments/api/use_custom_domain'
-import { useCurrentPlan } from '@/features/plans/api/use_plans'
+import { useProjectPlan } from '@/features/plans/api/use_plans'
 import { toast } from '@/hooks/use_toast'
 import type { Environment } from '@/features/environments/types/environment.types'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/card'
@@ -25,7 +25,7 @@ interface Props {
 export default function CustomDomainCard({ env, projectId }: Props) {
   const { t }                 = useTranslation('environments')
   const cd                    = env.config?.custom_domain
-  const { data: currentPlan } = useCurrentPlan()
+  const { data: currentPlan } = useProjectPlan(projectId)
 
   const { mutate: setDomain,    isPending: setting   } = useSetCustomDomain(projectId)
   const { mutate: removeDomain, isPending: removing  } = useRemoveCustomDomain(projectId)

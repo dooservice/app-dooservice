@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { CpuIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useUpdateWorkers } from '@/features/environments/api/use_workers'
-import { useCurrentPlan } from '@/features/plans/api/use_plans'
+import { useProjectPlan } from '@/features/plans/api/use_plans'
 import UpgradeDialog from '@/features/plans/components/upgrade_dialog'
 import { toast } from '@/hooks/use_toast'
 import type { Environment } from '@/features/environments/types/environment.types'
@@ -18,14 +18,16 @@ interface Props {
 export default function WorkersCard({ env, projectId }: Props) {
   const { t }                                        = useTranslation('environments')
   const { mutate: updateWorkers, isPending: saving } = useUpdateWorkers(projectId)
-  const { data: currentPlan }                        = useCurrentPlan()
+  const { data: projectPlan }                        = useProjectPlan(projectId)
   const [workers, setWorkers]                        = React.useState(env.config?.base_workers ?? 1)
   const [upgradeReason, setUpgradeReason]            = React.useState<string | null>(null)
 
   React.useEffect(() => { setWorkers(env.config?.base_workers ?? 1) }, [env.config?.base_workers])
 
-  const maxWorkers = currentPlan
-    ? (env.mode === 'production' ? currentPlan.plan.max_workers_production : currentPlan.plan.max_workers_development)
+  const maxWorkers = projectPlan
+    ? env.mode === 'production'
+      ? projectPlan.plan.max_workers_production + projectPlan.project.extra_workers_production
+      : projectPlan.plan.max_workers_development + projectPlan.project.extra_workers_development
     : Infinity
 
   const WORKER_OPTIONS = [

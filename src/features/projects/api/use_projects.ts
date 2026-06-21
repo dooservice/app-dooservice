@@ -62,6 +62,11 @@ export function useCreateProject() {
           repo_full_name: payload.repo_full_name ?? null,
           repo_id:        payload.repo_id        ?? 0,
           default_branch: payload.default_branch ?? 'main',
+          plan_id:                         payload.plan_id,
+          extra_workers_production:       payload.extra_workers_production       ?? 0,
+          extra_workers_development:      payload.extra_workers_development      ?? 0,
+          extra_storage_gb:                payload.extra_storage_gb               ?? 0,
+          extra_development_environments:  payload.extra_development_environments ?? 0,
         },
       }).json<{ project_id: string; name: string; env_job_id: string }>(),
     onSuccess: () => {

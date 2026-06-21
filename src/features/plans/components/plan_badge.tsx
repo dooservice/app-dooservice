@@ -1,8 +1,12 @@
 import { Badge } from '@/components/badge'
-import { useCurrentPlan } from '../api/use_plans'
+import { useProjectPlan } from '../api/use_plans'
 
-export default function PlanBadge() {
-  const { data } = useCurrentPlan()
+interface Props {
+  projectId: string
+}
+
+export default function PlanBadge({ projectId }: Props) {
+  const { data } = useProjectPlan(projectId)
   if (!data) return null
 
   return (

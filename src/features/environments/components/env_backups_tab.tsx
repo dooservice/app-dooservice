@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import { useEnvDateTime } from '@/lib/date'
 import { useBackupDownloadUrl, useBackups } from '@/features/environments/api/use_backups'
 import { useCurrentProject } from '@/features/projects/api/use_projects'
-import { useCurrentPlan } from '@/features/plans/api/use_plans'
+import { useProjectPlan } from '@/features/plans/api/use_plans'
 import type { Backup, BackupStatus, Environment } from '@/features/environments/types/environment.types'
 import Button from '@/components/button'
 import Spinner from '@/components/spinner'
@@ -48,7 +48,7 @@ export default function EnvBackupsTab({ env, projectId }: Props) {
 
   const { data: backups = [], isPending }                        = useBackups(projectId, env?.id ?? '')
   const project                                                 = useCurrentProject()
-  const { data: currentPlan }                                   = useCurrentPlan()
+  const { data: currentPlan }                                   = useProjectPlan(projectId)
   const [createOpen, setCreateOpen]                             = React.useState(false)
   const [uploadOpen, setUploadOpen]                             = React.useState(false)
   const [restoring, setRestoring]                               = React.useState<Backup | null>(null)

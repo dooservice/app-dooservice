@@ -8,6 +8,11 @@ export interface Project {
   repo_full_name: string
   region:         string   // injected client-side from which agent answered
   locked:         boolean
+  plan_id:                         string
+  extra_workers_production:        number
+  extra_workers_development:       number
+  extra_storage_gb:                number
+  extra_development_environments:  number
   created_at:     string
   updated_at:     string
 }
@@ -24,4 +29,9 @@ export interface CreateProjectPayload {
   repo_full_name?: string
   repo_id?:        number
   default_branch?: string
+  plan_id:                         string
+  extra_workers_production?:       number
+  extra_workers_development?:      number
+  extra_storage_gb?:               number
+  extra_development_environments?: number
 }

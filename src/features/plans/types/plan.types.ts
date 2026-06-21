@@ -1,7 +1,6 @@
 export interface Plan {
   id:                            string
   name:                          string
-  max_projects:                  number | null
   max_workers_production:        number
   max_workers_development:       number
   max_development_environments:  number
@@ -11,11 +10,15 @@ export interface Plan {
   is_default:                    boolean
 }
 
-export interface PlanUsage {
-  projects: number
+export interface ProjectPlanAddons {
+  plan_id:                         string
+  extra_workers_production:        number
+  extra_workers_development:       number
+  extra_storage_gb:                number
+  extra_development_environments:  number
 }
 
-export interface CurrentPlanResponse {
-  plan:  Plan
-  usage: PlanUsage
+export interface ProjectPlanResponse {
+  plan:    Plan
+  project: ProjectPlanAddons
 }

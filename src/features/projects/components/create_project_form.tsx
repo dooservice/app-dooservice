@@ -13,6 +13,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/select'
 import Button from '@/components/button'
 import { useAgents } from '@/features/agents/api/use_agents'
+import { usePlans } from '@/features/plans/api/use_plans'
 import { useCreateProject, useProjectNameAvailable } from '@/features/projects/api/use_projects'
 import { useProvisionProgress } from '@/features/environments/api/use_provision_progress'
 import ProvisionProgressModal from '@/features/environments/components/provision_progress_modal'
@@ -207,6 +208,7 @@ export default function CreateProjectForm() {
   const { t }                         = useTranslation('projects')
   const navigate                      = useNavigate()
   const { data: agents = [] }         = useAgents()
+  const { data: plans = [] }          = usePlans()
   const { mutate: create, isPending } = useCreateProject()
   const { data: ghStatus }            = useGitHubStatus()
   const provision                     = useProvisionProgress()
@@ -217,6 +219,20 @@ export default function CreateProjectForm() {
     if (provision.status !== 'done' || !createdProjectIdRef.current) return
     navigate(`/projects/${createdProjectIdRef.current}`)
   }, [provision.status, navigate])
+
+  const [planId, setPlanId]               = React.useState('free')
+  const [extraWorkersProduction, setExtraWorkersProduction]   = React.useState(0)
+  const [extraWorkersDevelopment, setExtraWorkersDevelopment] = React.useState(0)
+  const [extraStorageGb, setExtraStorageGb]                   = React.useState(0)
+  const [extraDevEnvironments, setExtraDevEnvironments]       = React.useState(0)
+
+  React.useEffect(() => {
+    const defaultPlan = plans.find(p => p.is_default)
+    if (defaultPlan) setPlanId(defaultPlan.id)
+  }, [plans])
+
+  const selectedPlan = plans.find(p => p.id === planId)
+  const isPaidPlan    = !!selectedPlan && !selectedPlan.is_default
 
   const [repoMode, setRepoMode]           = React.useState<RepoMode>('none')
   const [newRepoName, setNewRepoName]     = React.useState('')
@@ -296,6 +312,11 @@ export default function CreateProjectForm() {
       repo_full_name: repoFullName || undefined,
       repo_id:        repoId || undefined,
       default_branch: repoDefaultBranch,
+      plan_id:                         planId,
+      extra_workers_production:       isPaidPlan ? extraWorkersProduction  : 0,
+      extra_workers_development:      isPaidPlan ? extraWorkersDevelopment : 0,
+      extra_storage_gb:                isPaidPlan ? extraStorageGb         : 0,
+      extra_development_environments:  isPaidPlan ? extraDevEnvironments   : 0,
     }, {
       onSuccess: result => {
         createdProjectIdRef.current = result.project_id
@@ -404,6 +425,68 @@ export default function CreateProjectForm() {
                 )}
                 {errors.region && <p className="text-xs text-red-600">{errors.region.message}</p>}
               </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>{t('createForm.plan')}</CardTitle>
+              <CardDescription>{t('createForm.planDescription')}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2" role="radiogroup">
+                {plans.map(plan => {
+                  const active = planId === plan.id
+                  return (
+                    <label
+                      key={plan.id}
+                      className={cn(
+                        'relative cursor-pointer flex flex-col gap-1 rounded-md border px-3 py-2.5 transition-all',
+                        active
+                          ? 'border-brand-teal bg-brand-teal-light ring-1 ring-brand-teal/20'
+                          : 'border-zinc-200 bg-white hover:border-zinc-300',
+                      )}
+                    >
+                      <input type="radio" value={plan.id} checked={active} onChange={() => setPlanId(plan.id)} className="sr-only" />
+                      <span className={cn('text-sm font-semibold', active ? 'text-brand-teal' : 'text-zinc-900')}>{plan.name}</span>
+                      <span className="text-xs text-zinc-500">
+                        {plan.max_workers_production} {t('createForm.planWorkersProd')} · {plan.max_storage_gb}GB
+                        {plan.allow_custom_domain && ` · ${t('createForm.planCustomDomain')}`}
+                        {plan.allow_auto_backups && ` · ${t('createForm.planAutoBackups')}`}
+                      </span>
+                    </label>
+                  )
+                })}
+              </div>
+
+              {isPaidPlan && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-zinc-100">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-medium text-zinc-700">{t('createForm.extraWorkersProduction')}</label>
+                    <input type="number" min={0} value={extraWorkersProduction}
+                      onChange={e => setExtraWorkersProduction(Math.max(0, Number(e.target.value)))}
+                      className="w-full h-9 rounded-md border border-zinc-200 bg-white px-3 text-sm" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-medium text-zinc-700">{t('createForm.extraWorkersDevelopment')}</label>
+                    <input type="number" min={0} value={extraWorkersDevelopment}
+                      onChange={e => setExtraWorkersDevelopment(Math.max(0, Number(e.target.value)))}
+                      className="w-full h-9 rounded-md border border-zinc-200 bg-white px-3 text-sm" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-medium text-zinc-700">{t('createForm.extraStorageGb')}</label>
+                    <input type="number" min={0} value={extraStorageGb}
+                      onChange={e => setExtraStorageGb(Math.max(0, Number(e.target.value)))}
+                      className="w-full h-9 rounded-md border border-zinc-200 bg-white px-3 text-sm" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-medium text-zinc-700">{t('createForm.extraDevEnvironments')}</label>
+                    <input type="number" min={0} value={extraDevEnvironments}
+                      onChange={e => setExtraDevEnvironments(Math.max(0, Number(e.target.value)))}
+                      className="w-full h-9 rounded-md border border-zinc-200 bg-white px-3 text-sm" />
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
 

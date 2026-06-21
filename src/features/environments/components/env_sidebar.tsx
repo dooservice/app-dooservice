@@ -2,10 +2,11 @@ import { useTranslation } from 'react-i18next'
 import { PlusIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { RUNTIME, ENV_GROUPS } from '@/lib/constants'
-import { useCurrentPlan } from '@/features/plans/api/use_plans'
+import { useProjectPlan } from '@/features/plans/api/use_plans'
 import type { Environment, EnvMode } from '@/features/environments/types/environment.types'
 
 interface Props {
+  projectId:     string
   environments:  Environment[]
   selectedEnvId: string | null
   onSelect:      (id: string) => void
@@ -39,12 +40,15 @@ function EnvList({ envs, selectedEnvId, onSelect }: { envs: Environment[]; selec
   )
 }
 
-export default function EnvSidebar({ environments, selectedEnvId, onSelect, onAdd }: Props) {
+export default function EnvSidebar({ projectId, environments, selectedEnvId, onSelect, onAdd }: Props) {
   const { t }                 = useTranslation('environments')
-  const { data: currentPlan } = useCurrentPlan()
+  const { data: currentPlan } = useProjectPlan(projectId)
   const production  = environments.filter(e => e.mode === 'production')
   const development = environments.filter(e => e.mode === 'development')
-  const devLimitReached = currentPlan ? development.length >= currentPlan.plan.max_development_environments : false
+  const devLimit = currentPlan
+    ? currentPlan.plan.max_development_environments + currentPlan.project.extra_development_environments
+    : Infinity
+  const devLimitReached = development.length >= devLimit
 
   return (
     <aside className="w-48 shrink-0">

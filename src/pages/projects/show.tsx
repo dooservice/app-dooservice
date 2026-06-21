@@ -60,6 +60,7 @@ export default function ProjectShowPage() {
       ) : (
         <div className="flex gap-6 items-start">
           <EnvSidebar
+            projectId={projectId ?? ''}
             environments={environments}
             selectedEnvId={selectedEnv?.id ?? null}
             onSelect={id => { setSelectedEnvId(id); setActiveTab('overview') }}
