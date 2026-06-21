@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { CpuIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useUpdateWorkers } from '@/features/environments/api/use_workers'
+import { useCurrentPlan } from '@/features/plans/api/use_plans'
+import UpgradeDialog from '@/features/plans/components/upgrade_dialog'
 import { toast } from '@/hooks/use_toast'
 import type { Environment } from '@/features/environments/types/environment.types'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/card'
@@ -16,9 +18,15 @@ interface Props {
 export default function WorkersCard({ env, projectId }: Props) {
   const { t }                                        = useTranslation('environments')
   const { mutate: updateWorkers, isPending: saving } = useUpdateWorkers(projectId)
+  const { data: currentPlan }                        = useCurrentPlan()
   const [workers, setWorkers]                        = React.useState(env.config?.base_workers ?? 1)
+  const [upgradeReason, setUpgradeReason]            = React.useState<string | null>(null)
 
   React.useEffect(() => { setWorkers(env.config?.base_workers ?? 1) }, [env.config?.base_workers])
+
+  const maxWorkers = currentPlan
+    ? (env.mode === 'production' ? currentPlan.plan.max_workers_production : currentPlan.plan.max_workers_development)
+    : Infinity
 
   const WORKER_OPTIONS = [
     { value: 1, label: t('workers.options.1_label'), description: t('workers.options.1_desc') },
@@ -37,18 +45,25 @@ export default function WorkersCard({ env, projectId }: Props) {
       <CardContent className="space-y-4">
         <p className="text-xs text-zinc-500">{t('workers.description')}</p>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {WORKER_OPTIONS.map(opt => (
-            <button key={opt.value} type="button" onClick={() => setWorkers(opt.value)}
-              className={cn('flex flex-col items-start rounded-lg border px-3 py-2.5 text-left transition-colors',
-                workers === opt.value
-                  ? 'border-brand-teal bg-brand-teal-light text-brand-teal'
-                  : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 hover:border-zinc-300 dark:hover:border-zinc-600 hover:text-zinc-700 dark:hover:text-zinc-200'
-              )}
-            >
-              <span className="text-sm font-semibold">{opt.label}</span>
-              <span className="text-xs mt-0.5 opacity-70">{opt.description}</span>
-            </button>
-          ))}
+          {WORKER_OPTIONS.map(opt => {
+            const locked = opt.value > maxWorkers
+            return (
+              <button key={opt.value} type="button" disabled={locked}
+                title={locked ? t('plans.workerLocked') : undefined}
+                onClick={() => setWorkers(opt.value)}
+                className={cn('flex flex-col items-start rounded-lg border px-3 py-2.5 text-left transition-colors',
+                  locked
+                    ? 'border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 text-zinc-300 dark:text-zinc-600 cursor-not-allowed'
+                    : workers === opt.value
+                      ? 'border-brand-teal bg-brand-teal-light text-brand-teal'
+                      : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 hover:border-zinc-300 dark:hover:border-zinc-600 hover:text-zinc-700 dark:hover:text-zinc-200'
+                )}
+              >
+                <span className="text-sm font-semibold">{opt.label}</span>
+                <span className="text-xs mt-0.5 opacity-70">{locked ? t('plans.workerLocked') : opt.description}</span>
+              </button>
+            )
+          })}
         </div>
       </CardContent>
       <div className="px-6 pb-5">
@@ -58,11 +73,15 @@ export default function WorkersCard({ env, projectId }: Props) {
             { envId: env.id, workers },
             {
               onSuccess: () => toast({ title: t('workers.saved') }),
-              onError:   err => toast({ title: t('workers.saveFailed'), description: err.message, variant: 'destructive' }),
+              onError:   (err: any) => {
+                if (err.response?.status === 402) { setUpgradeReason(err.message); return }
+                toast({ title: t('workers.saveFailed'), description: err.message, variant: 'destructive' })
+              },
             },
           )}
         >{t('workers.save')}</Button>
       </div>
+      <UpgradeDialog open={!!upgradeReason} reason={upgradeReason ?? ''} onClose={() => setUpgradeReason(null)} />
     </Card>
   )
 }

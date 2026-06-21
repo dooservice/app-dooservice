@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { useEnvDateTime } from '@/lib/date'
 import { useBackupDownloadUrl, useBackups } from '@/features/environments/api/use_backups'
 import { useCurrentProject } from '@/features/projects/api/use_projects'
+import { useCurrentPlan } from '@/features/plans/api/use_plans'
 import type { Backup, BackupStatus, Environment } from '@/features/environments/types/environment.types'
 import Button from '@/components/button'
 import Spinner from '@/components/spinner'
@@ -47,6 +48,7 @@ export default function EnvBackupsTab({ env, projectId }: Props) {
 
   const { data: backups = [], isPending }                        = useBackups(projectId, env?.id ?? '')
   const project                                                 = useCurrentProject()
+  const { data: currentPlan }                                   = useCurrentPlan()
   const [createOpen, setCreateOpen]                             = React.useState(false)
   const [uploadOpen, setUploadOpen]                             = React.useState(false)
   const [restoring, setRestoring]                               = React.useState<Backup | null>(null)
@@ -58,6 +60,11 @@ export default function EnvBackupsTab({ env, projectId }: Props) {
 
   return (
     <div className="space-y-4">
+      {currentPlan && !currentPlan.plan.allow_auto_backups && (
+        <div className="rounded-md border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 px-4 py-2.5 text-xs text-amber-700 dark:text-amber-400">
+          {t('plans.backupsDisabled', { ns: 'environments' })}
+        </div>
+      )}
       <div className="flex items-center justify-between">
         <p className="text-sm text-zinc-500">{t('count', { count: backups.length })}</p>
         <div className="flex items-center gap-2">

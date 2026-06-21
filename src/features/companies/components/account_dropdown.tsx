@@ -7,6 +7,7 @@ import {
   DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger,
 } from '@/components/dropdown_menu'
 import { useCurrentUser, useLogout } from '@/features/auth'
+import PlanBadge from '@/features/plans/components/plan_badge'
 
 export default function AccountDropdown() {
   const user               = useCurrentUser()
@@ -30,9 +31,10 @@ export default function AccountDropdown() {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end">
-        <DropdownMenuLabel className="flex flex-col gap-0.5">
+        <DropdownMenuLabel className="flex flex-col gap-1">
           <span className="text-sm font-semibold text-foreground truncate">{user?.display_name}</span>
           <span className="text-xs font-normal text-muted-foreground truncate">{user?.email}</span>
+          <PlanBadge />
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>

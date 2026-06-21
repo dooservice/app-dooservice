@@ -3,7 +3,9 @@ import i18next from 'i18next'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { LockIcon } from 'lucide-react'
 import { useSetCustomDomain, useRemoveCustomDomain, useVerifyCustomDomain } from '@/features/environments/api/use_custom_domain'
+import { useCurrentPlan } from '@/features/plans/api/use_plans'
 import { toast } from '@/hooks/use_toast'
 import type { Environment } from '@/features/environments/types/environment.types'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/card'
@@ -21,8 +23,9 @@ interface Props {
 }
 
 export default function CustomDomainCard({ env, projectId }: Props) {
-  const { t } = useTranslation('environments')
-  const cd    = env.config?.custom_domain
+  const { t }                 = useTranslation('environments')
+  const cd                    = env.config?.custom_domain
+  const { data: currentPlan } = useCurrentPlan()
 
   const { mutate: setDomain,    isPending: setting   } = useSetCustomDomain(projectId)
   const { mutate: removeDomain, isPending: removing  } = useRemoveCustomDomain(projectId)
@@ -51,7 +54,12 @@ export default function CustomDomainCard({ env, projectId }: Props) {
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
-        {!cd ? (
+        {!cd && currentPlan && !currentPlan.plan.allow_custom_domain ? (
+          <div className="flex items-center gap-3 rounded-md border border-dashed border-zinc-300 dark:border-zinc-600 px-4 py-6 text-center">
+            <LockIcon className="h-4 w-4 shrink-0 text-zinc-400" />
+            <p className="text-sm text-zinc-500 dark:text-zinc-400">{t('plans.domainLocked')}</p>
+          </div>
+        ) : !cd ? (
           <div className="space-y-4">
             <div className="rounded-md border border-brand-orange/10 bg-brand-orange-light p-4 space-y-3">
               <p className="text-xs font-semibold text-brand-orange-dark dark:text-orange-300 uppercase tracking-wide">{t('domain.howTo')}</p>

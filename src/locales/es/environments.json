@@ -154,5 +154,13 @@
       "8_label": "8 workers",
       "8_desc":  "Alto tráfico"
     }
+  },
+  "plans": {
+    "upgradeTitle":      "Se requiere actualizar el plan",
+    "upgradeClose":      "Entendido",
+    "domainLocked":      "Los dominios personalizados no están disponibles en tu plan actual.",
+    "backupsDisabled":   "Los backups automáticos no están disponibles en tu plan actual. Los backups manuales siguen funcionando.",
+    "devEnvLimitReached":"Alcanzaste el límite de environments de desarrollo de tu plan actual.",
+    "workerLocked":      "Disponible en un plan superior"
   }
 }

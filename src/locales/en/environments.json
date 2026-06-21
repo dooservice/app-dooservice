@@ -154,5 +154,13 @@
       "8_label":  "8 workers",
       "8_desc":   "High traffic"
     }
+  },
+  "plans": {
+    "upgradeTitle":      "Upgrade required",
+    "upgradeClose":      "Got it",
+    "domainLocked":      "Custom domains are not available on your current plan.",
+    "backupsDisabled":   "Automatic backups are not available on your current plan. Manual backups still work.",
+    "devEnvLimitReached":"You've reached the development environment limit for your current plan.",
+    "workerLocked":      "Available on a higher plan"
   }
 }
