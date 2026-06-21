@@ -64,7 +64,6 @@ export function useCreateProject() {
           default_branch: payload.default_branch ?? 'main',
           plan_id:                         payload.plan_id,
           extra_workers_production:       payload.extra_workers_production       ?? 0,
-          extra_workers_development:      payload.extra_workers_development      ?? 0,
           extra_storage_gb:                payload.extra_storage_gb               ?? 0,
           extra_development_environments:  payload.extra_development_environments ?? 0,
         },

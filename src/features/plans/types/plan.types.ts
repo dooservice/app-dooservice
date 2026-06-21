@@ -13,7 +13,6 @@ export interface Plan {
 export interface ProjectPlanAddons {
   plan_id:                         string
   extra_workers_production:        number
-  extra_workers_development:       number
   extra_storage_gb:                number
   extra_development_environments:  number
 }

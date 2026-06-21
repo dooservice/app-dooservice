@@ -10,7 +10,6 @@ export interface Project {
   locked:         boolean
   plan_id:                         string
   extra_workers_production:        number
-  extra_workers_development:       number
   extra_storage_gb:                number
   extra_development_environments:  number
   created_at:     string
@@ -31,7 +30,6 @@ export interface CreateProjectPayload {
   default_branch?: string
   plan_id:                         string
   extra_workers_production?:       number
-  extra_workers_development?:      number
   extra_storage_gb?:               number
   extra_development_environments?: number
 }

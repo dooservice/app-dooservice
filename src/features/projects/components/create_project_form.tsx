@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import { z } from 'zod'
-import { CheckIcon, ChevronDownIcon, GitBranchIcon, LockIcon, Settings2Icon } from 'lucide-react'
+import { CheckIcon, ChevronDownIcon, GitBranchIcon, LockIcon, Settings2Icon, XIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { REGION_LABELS } from '@/lib/constants'
 import { env } from '@/config/env'
@@ -204,6 +204,17 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>
 
+function PlanFeatureRow({ included, label }: { included: boolean; label: string }) {
+  return (
+    <li className={cn('flex items-center gap-1.5', included ? 'text-zinc-600' : 'text-zinc-400')}>
+      {included
+        ? <CheckIcon className="h-3 w-3 text-emerald-600 shrink-0" />
+        : <XIcon className="h-3 w-3 text-zinc-300 shrink-0" />}
+      <span className={included ? '' : 'opacity-60'}>{label}</span>
+    </li>
+  )
+}
+
 export default function CreateProjectForm() {
   const { t }                         = useTranslation('projects')
   const navigate                      = useNavigate()
@@ -222,7 +233,6 @@ export default function CreateProjectForm() {
 
   const [planId, setPlanId]               = React.useState('free')
   const [extraWorkersProduction, setExtraWorkersProduction]   = React.useState(0)
-  const [extraWorkersDevelopment, setExtraWorkersDevelopment] = React.useState(0)
   const [extraStorageGb, setExtraStorageGb]                   = React.useState(0)
   const [extraDevEnvironments, setExtraDevEnvironments]       = React.useState(0)
 
@@ -313,10 +323,9 @@ export default function CreateProjectForm() {
       repo_id:        repoId || undefined,
       default_branch: repoDefaultBranch,
       plan_id:                         planId,
-      extra_workers_production:       isPaidPlan ? extraWorkersProduction  : 0,
-      extra_workers_development:      isPaidPlan ? extraWorkersDevelopment : 0,
-      extra_storage_gb:                isPaidPlan ? extraStorageGb         : 0,
-      extra_development_environments:  isPaidPlan ? extraDevEnvironments   : 0,
+      extra_workers_production:       isPaidPlan ? extraWorkersProduction : 0,
+      extra_storage_gb:                isPaidPlan ? extraStorageGb        : 0,
+      extra_development_environments:  isPaidPlan ? extraDevEnvironments  : 0,
     }, {
       onSuccess: result => {
         createdProjectIdRef.current = result.project_id
@@ -449,11 +458,13 @@ export default function CreateProjectForm() {
                     >
                       <input type="radio" value={plan.id} checked={active} onChange={() => setPlanId(plan.id)} className="sr-only" />
                       <span className={cn('text-sm font-semibold', active ? 'text-brand-teal' : 'text-zinc-900')}>{plan.name}</span>
-                      <span className="text-xs text-zinc-500">
-                        {plan.max_workers_production} {t('createForm.planWorkersProd')} · {plan.max_storage_gb}GB
-                        {plan.allow_custom_domain && ` · ${t('createForm.planCustomDomain')}`}
-                        {plan.allow_auto_backups && ` · ${t('createForm.planAutoBackups')}`}
-                      </span>
+                      <ul className="text-xs space-y-1">
+                        <li className="text-zinc-600">{t('createForm.planWorkers')}: {plan.max_workers_production}</li>
+                        <li className="text-zinc-600">{t('createForm.planStorage')}: {plan.max_storage_gb}GB</li>
+                        <li className="text-zinc-600">{t('createForm.planDevEnvironments')}: {plan.max_development_environments}</li>
+                        <PlanFeatureRow included={plan.allow_custom_domain} label={t('createForm.planCustomDomain')} />
+                        <PlanFeatureRow included={plan.allow_auto_backups} label={t('createForm.planAutoBackups')} />
+                      </ul>
                     </label>
                   )
                 })}
@@ -465,12 +476,6 @@ export default function CreateProjectForm() {
                     <label className="text-xs font-medium text-zinc-700">{t('createForm.extraWorkersProduction')}</label>
                     <input type="number" min={0} value={extraWorkersProduction}
                       onChange={e => setExtraWorkersProduction(Math.max(0, Number(e.target.value)))}
-                      className="w-full h-9 rounded-md border border-zinc-200 bg-white px-3 text-sm" />
-                  </div>
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-medium text-zinc-700">{t('createForm.extraWorkersDevelopment')}</label>
-                    <input type="number" min={0} value={extraWorkersDevelopment}
-                      onChange={e => setExtraWorkersDevelopment(Math.max(0, Number(e.target.value)))}
                       className="w-full h-9 rounded-md border border-zinc-200 bg-white px-3 text-sm" />
                   </div>
                   <div className="space-y-1.5">

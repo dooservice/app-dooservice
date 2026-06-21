@@ -27,7 +27,7 @@ export default function WorkersCard({ env, projectId }: Props) {
   const maxWorkers = projectPlan
     ? env.mode === 'production'
       ? projectPlan.plan.max_workers_production + projectPlan.project.extra_workers_production
-      : projectPlan.plan.max_workers_development + projectPlan.project.extra_workers_development
+      : projectPlan.plan.max_workers_development
     : Infinity
 
   const WORKER_OPTIONS = [
