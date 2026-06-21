@@ -71,6 +71,7 @@ export default function WorkersCard({ env, projectId }: Props) {
       <div className="px-6 pb-5">
         <Button
           loading={saving}
+          disabled={workers === (env.config?.base_workers ?? 1)}
           onClick={() => updateWorkers(
             { envId: env.id, workers },
             {
