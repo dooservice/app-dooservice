@@ -445,19 +445,29 @@ export default function CreateProjectForm() {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2" role="radiogroup">
                 {plans.map(plan => {
-                  const active = planId === plan.id
+                  const active   = planId === plan.id
+                  const disabled = !plan.is_default
                   return (
                     <label
                       key={plan.id}
                       className={cn(
-                        'relative cursor-pointer flex flex-col gap-1 rounded-md border px-3 py-2.5 transition-all',
-                        active
-                          ? 'border-brand-teal bg-brand-teal-light ring-1 ring-brand-teal/20'
-                          : 'border-zinc-200 bg-white hover:border-zinc-300',
+                        'relative flex flex-col gap-1 rounded-md border px-3 py-2.5 transition-all',
+                        disabled
+                          ? 'cursor-not-allowed border-zinc-100 bg-zinc-50 opacity-60'
+                          : active
+                            ? 'cursor-pointer border-brand-teal bg-brand-teal-light ring-1 ring-brand-teal/20'
+                            : 'cursor-pointer border-zinc-200 bg-white hover:border-zinc-300',
                       )}
                     >
-                      <input type="radio" value={plan.id} checked={active} onChange={() => setPlanId(plan.id)} className="sr-only" />
-                      <span className={cn('text-sm font-semibold', active ? 'text-brand-teal' : 'text-zinc-900')}>{plan.name}</span>
+                      <input type="radio" value={plan.id} checked={active} disabled={disabled} onChange={() => !disabled && setPlanId(plan.id)} className="sr-only" />
+                      <span className="flex items-center gap-2">
+                        <span className={cn('text-sm font-semibold', active ? 'text-brand-teal' : 'text-zinc-900')}>{plan.name}</span>
+                        {disabled && (
+                          <span className="text-[10px] uppercase tracking-wide font-semibold rounded px-1 py-0.5 bg-zinc-200 text-zinc-500">
+                            {t('createForm.planComingSoon')}
+                          </span>
+                        )}
+                      </span>
                       <ul className="text-xs space-y-1">
                         <li className="text-zinc-600">{t('createForm.planWorkers')}: {plan.max_workers_production}</li>
                         <li className="text-zinc-600">{t('createForm.planStorage')}: {plan.max_storage_gb}GB</li>

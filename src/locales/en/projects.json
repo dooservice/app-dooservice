@@ -79,6 +79,7 @@
     "planDevEnvironments": "Development environments",
     "planCustomDomain": "Custom domain",
     "planAutoBackups": "Auto backups",
+    "planComingSoon": "Coming soon",
     "extraWorkersProduction": "Extra production workers",
     "extraStorageGb": "Extra storage (GB)",
     "extraDevEnvironments": "Extra development branches",
