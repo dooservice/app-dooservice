@@ -161,6 +161,7 @@
     "domainLocked":      "Custom domains are not available on your current plan.",
     "backupsDisabled":   "Automatic backups are not available on your current plan. Manual backups still work.",
     "devEnvLimitReached":"You've reached the development environment limit for your current plan.",
-    "workerLocked":      "Available on a higher plan"
+    "workerLocked":      "Available on a higher plan",
+    "workerCannotDecrease": "Workers can only be increased, not decreased"
   }
 }

@@ -16,17 +16,19 @@ const TAB_ICONS: Record<TabId, React.ElementType> = {
 const TAB_IDS: TabId[] = ['overview', 'deployments', 'logs', 'backups', 'settings']
 
 interface Props {
-  activeTab: TabId
-  onChange:  (tab: TabId) => void
+  activeTab:     TabId
+  onChange:      (tab: TabId) => void
+  hideSettings?: boolean
 }
 
-export default function EnvTabNav({ activeTab, onChange }: Props) {
+export default function EnvTabNav({ activeTab, onChange, hideSettings }: Props) {
   const { t } = useTranslation('environments')
+  const tabIds = hideSettings ? TAB_IDS.filter(id => id !== 'settings') : TAB_IDS
 
   return (
     <nav className="border-b border-zinc-200 dark:border-zinc-700">
       <ul className="flex items-center text-sm">
-        {TAB_IDS.map(id => {
+        {tabIds.map(id => {
           const Icon = TAB_ICONS[id]
           return (
             <li key={id}>

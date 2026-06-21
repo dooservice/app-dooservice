@@ -38,6 +38,10 @@ export default function ProjectShowPage() {
   const { mutate: provisionEnv } = useProvisionEnvironment()
 
   React.useEffect(() => {
+    if (project?.locked && activeTab === 'settings') setActiveTab('overview')
+  }, [project?.locked, activeTab])
+
+  React.useEffect(() => {
     if (provision.status !== 'done') return
     const timer = setTimeout(provision.dismiss, 1500)
     return () => clearTimeout(timer)
@@ -70,7 +74,7 @@ export default function ProjectShowPage() {
           <div className="w-px bg-zinc-200 dark:bg-zinc-700 self-stretch" />
 
           <div className="flex-1 min-w-0">
-            <EnvTabNav activeTab={activeTab} onChange={setActiveTab} />
+            <EnvTabNav activeTab={activeTab} onChange={setActiveTab} hideSettings={!!project?.locked} />
             <div className="pt-5">
               {activeTab === 'overview' && (
                 selectedEnv
@@ -80,7 +84,7 @@ export default function ProjectShowPage() {
               {activeTab === 'logs'        && <EnvLogsTab        env={selectedEnv} projectId={projectId ?? ''} />}
               {activeTab === 'backups'     && <EnvBackupsTab     env={selectedEnv} projectId={projectId ?? ''} />}
               {activeTab === 'deployments' && <EnvDeploymentsTab env={selectedEnv} projectId={projectId ?? ''} />}
-              {activeTab === 'settings'    && <EnvSettingsTab    env={selectedEnv} />}
+              {activeTab === 'settings' && !project?.locked && <EnvSettingsTab env={selectedEnv} />}
             </div>
           </div>
         </div>

@@ -24,6 +24,7 @@ export default function WorkersCard({ env, projectId }: Props) {
 
   React.useEffect(() => { setWorkers(env.config?.base_workers ?? 1) }, [env.config?.base_workers])
 
+  const currentWorkers = env.config?.base_workers ?? 1
   const maxWorkers = projectPlan
     ? env.mode === 'production'
       ? projectPlan.plan.max_workers_production + projectPlan.project.extra_workers_production
@@ -48,10 +49,13 @@ export default function WorkersCard({ env, projectId }: Props) {
         <p className="text-xs text-zinc-500">{t('workers.description')}</p>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
           {WORKER_OPTIONS.map(opt => {
-            const locked = opt.value > maxWorkers
+            const belowMin = opt.value < currentWorkers
+            const aboveMax = opt.value > maxWorkers
+            const locked   = belowMin || aboveMax
+            const lockedLabel = belowMin ? t('plans.workerCannotDecrease') : t('plans.workerLocked')
             return (
               <button key={opt.value} type="button" disabled={locked}
-                title={locked ? t('plans.workerLocked') : undefined}
+                title={locked ? lockedLabel : undefined}
                 onClick={() => setWorkers(opt.value)}
                 className={cn('flex flex-col items-start rounded-lg border px-3 py-2.5 text-left transition-colors',
                   locked
@@ -62,7 +66,7 @@ export default function WorkersCard({ env, projectId }: Props) {
                 )}
               >
                 <span className="text-sm font-semibold">{opt.label}</span>
-                <span className="text-xs mt-0.5 opacity-70">{locked ? t('plans.workerLocked') : opt.description}</span>
+                <span className="text-xs mt-0.5 opacity-70">{locked ? lockedLabel : opt.description}</span>
               </button>
             )
           })}

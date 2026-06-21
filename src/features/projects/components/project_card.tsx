@@ -47,9 +47,11 @@ export default function ProjectCard({ project }: { project: Project }) {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuItem className="cursor-pointer" onClick={() => navigate(configPath)}>
-                <Settings2Icon className="mr-2 h-4 w-4" />{t('card.config')}
-              </DropdownMenuItem>
+              {!project.locked && (
+                <DropdownMenuItem className="cursor-pointer" onClick={() => navigate(configPath)}>
+                  <Settings2Icon className="mr-2 h-4 w-4" />{t('card.config')}
+                </DropdownMenuItem>
+              )}
               {project.locked ? (
                 <DropdownMenuItem className="cursor-pointer" onClick={() => unlockProject(project.id)}>
                   <UnlockIcon className="mr-2 h-4 w-4" />{t('card.unlock')}
