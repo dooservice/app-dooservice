@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useTranslation } from 'react-i18next'
-import { AuthLayout, useForgotPassword } from '@/features/auth'
+import { AuthLayout, useForgotPassword } from '@/modules/auth'
 import InputField from '@/components/input_field'
 import Button from '@/components/button'
 

@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import { useIsAuthenticated } from '@/features/auth'
+import { useIsAuthenticated } from '@/modules/auth'
 
 export function GuestRoute() {
   const { isAuthenticated, isPending } = useIsAuthenticated()

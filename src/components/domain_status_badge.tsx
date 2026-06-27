@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import type { CustomDomain } from '@/features/environments/types/environment.types'
+import type { CustomDomain } from '@/modules/environments/types/environment.types'
 
 interface Props {
   cd: CustomDomain

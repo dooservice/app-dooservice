@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Navigate, Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import i18next from 'i18next'
-import { useIsAuthenticated } from '@/features/auth'
+import { useIsAuthenticated } from '@/modules/auth'
 import { toast } from '@/hooks/use_toast'
 
 export function ProtectedRoute() {

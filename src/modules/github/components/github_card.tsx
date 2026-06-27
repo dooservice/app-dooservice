@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { GitBranchIcon } from 'lucide-react'
-import { useGitHubStatus, useDisconnectGitHub } from '@/features/github/api/use_github'
+import { useGitHubStatus, useDisconnectGitHub } from '@/modules/github/api/use_github'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/card'
 import Button from '@/components/button'
 import { env } from '@/config/env'

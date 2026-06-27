@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next'
 import { PlusIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { RUNTIME, ENV_GROUPS } from '@/lib/constants'
-import { useProjectPlan } from '@/features/plans/api/use_plans'
-import type { Environment, EnvMode } from '@/features/environments/types/environment.types'
+import { useProjectPlan } from '@/modules/plans/api/use_plans'
+import type { Environment, EnvMode } from '@/modules/environments/types/environment.types'
 
 interface Props {
   projectId:     string

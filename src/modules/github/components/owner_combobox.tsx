@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 import { CheckIcon, ChevronsUpDownIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import type { GitHubOwner } from '@/features/github/api/use_github'
+import type { GitHubOwner } from '@/modules/github/api/use_github'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/popover'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/command'
 

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { SparkleIcon, StoreIcon } from 'lucide-react'
-import DashboardLayout from '@/features/companies/components/dashboard_layout'
+import DashboardLayout from '@/modules/companies/components/dashboard_layout'
 import { Card, CardContent } from '@/components/card'
-import { useCurrentUser } from '@/features/auth'
+import { useCurrentUser } from '@/modules/auth'
 
 export default function DashboardPage() {
   const user    = useCurrentUser()

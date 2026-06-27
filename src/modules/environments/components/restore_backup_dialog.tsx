@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { useEnvDateTime } from '@/lib/date'
-import { useRestoreBackup } from '@/features/environments/api/use_backups'
+import { useRestoreBackup } from '@/modules/environments/api/use_backups'
 import { toast } from '@/hooks/use_toast'
-import type { Backup, Environment } from '@/features/environments/types/environment.types'
+import type { Backup, Environment } from '@/modules/environments/types/environment.types'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/dialog'
 import Button from '@/components/button'
 

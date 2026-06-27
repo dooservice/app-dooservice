@@ -1,24 +1,25 @@
 import * as React from 'react'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useCurrentProject } from '@/features/projects/api/use_projects'
-import { useEnvironments, useProvisionEnvironment } from '@/features/environments/api/use_environments'
-import { useProvisionProgress } from '@/features/environments/api/use_provision_progress'
+import { useCurrentProject } from '@/modules/projects/api/use_projects'
+import { useEnvironments, useProvisionEnvironment } from '@/modules/environments/api/use_environments'
+import { useProvisionProgress } from '@/modules/environments/api/use_provision_progress'
 import { toast } from '@/hooks/use_toast'
-import type { EnvMode, ProvisionEnvPayload } from '@/features/environments/types/environment.types'
-import ProjectLayout from '@/features/projects/components/project_layout'
-import EnvSidebar from '@/features/environments/components/env_sidebar'
-import EnvTabNav, { type TabId } from '@/features/environments/components/env_tab_nav'
-import EnvOverviewTab from '@/features/environments/components/env_overview_tab'
-import EnvLogsTab from '@/features/environments/components/env_logs_tab'
-import EnvBackupsTab from '@/features/environments/components/env_backups_tab'
-import EnvDeploymentsTab from '@/features/environments/components/env_deployments_tab'
-import EnvSettingsTab from '@/features/environments/components/env_settings_tab'
-import SubmoduleKeysCard from '@/features/projects/components/submodule_keys_card'
-import NoEnvsPlaceholder from '@/features/environments/components/no_envs_placeholder'
-import ProvisionDialog from '@/features/environments/components/provision_dialog'
-import ProvisionProgressModal from '@/features/environments/components/provision_progress_modal'
+import type { EnvMode, ProvisionEnvPayload } from '@/modules/environments/types/environment.types'
+import ProjectLayout from '@/modules/projects/components/project_layout'
+import EnvSidebar from '@/modules/environments/components/env_sidebar'
+import EnvTabNav, { type TabId } from '@/modules/environments/components/env_tab_nav'
+import EnvOverviewTab from '@/modules/environments/components/env_overview_tab'
+import EnvLogsTab from '@/modules/environments/components/env_logs_tab'
+import EnvBackupsTab from '@/modules/environments/components/env_backups_tab'
+import EnvDeploymentsTab from '@/modules/environments/components/env_deployments_tab'
+import EnvSettingsTab from '@/modules/environments/components/env_settings_tab'
+import SubmoduleKeysCard from '@/modules/projects/components/submodule_keys_card'
+import NoEnvsPlaceholder from '@/modules/environments/components/no_envs_placeholder'
+import ProvisionDialog from '@/modules/environments/components/provision_dialog'
+import ProvisionProgressModal from '@/modules/environments/components/provision_progress_modal'
 import Spinner from '@/components/spinner'
+import { Slot } from '@/core'
 
 export default function ProjectShowPage() {
   const { t }         = useTranslation('projects')
@@ -111,6 +112,8 @@ export default function ProjectShowPage() {
         error={provision.error}
         onClose={provision.dismiss}
       />
+
+      <Slot name="projects.show:dialogs" />
     </ProjectLayout>
   )
 }

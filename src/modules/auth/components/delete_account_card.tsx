@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 import { AlertTriangleIcon } from 'lucide-react'
-import { useDeleteAccount } from '@/features/auth'
+import { useDeleteAccount } from '@/modules/auth'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/card'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogBody, DialogFooter, DialogDescription } from '@/components/dialog'
 import Button from '@/components/button'

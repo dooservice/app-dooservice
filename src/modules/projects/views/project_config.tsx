@@ -1,8 +1,8 @@
 import { Navigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useCurrentProject } from '@/features/projects/api/use_projects'
-import ProjectLayout from '@/features/projects/components/project_layout'
-import ProjectSettingsTab from '@/features/projects/components/project_settings_tab'
+import { useCurrentProject } from '@/modules/projects/api/use_projects'
+import ProjectLayout from '@/modules/projects/components/project_layout'
+import ProjectSettingsTab from '@/modules/projects/components/project_settings_tab'
 
 export default function ProjectConfigPage() {
   const { t }         = useTranslation('projects')

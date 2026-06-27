@@ -6,7 +6,7 @@ import {
   DropdownMenu, DropdownMenuContent, DropdownMenuGroup,
   DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger,
 } from '@/components/dropdown_menu'
-import { useCurrentUser, useLogout } from '@/features/auth'
+import { useCurrentUser, useLogout } from '@/modules/auth'
 
 export default function AccountDropdown() {
   const user               = useCurrentUser()

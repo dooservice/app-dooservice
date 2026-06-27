@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { queryClient } from '@/app/provider'
-import { useNatsJob } from '@/features/jobs/hooks/use_nats_job'
+import { useNatsJob } from '@/modules/jobs/hooks/use_nats_job'
 import type { EnvMode } from '../types/environment.types'
 
 export type ProvisionStatus = 'idle' | 'running' | 'done' | 'failed'

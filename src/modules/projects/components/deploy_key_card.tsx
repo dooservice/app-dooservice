@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { KeyRoundIcon, RefreshCwIcon } from 'lucide-react'
-import { useProjectDeployKey, useSetupProjectDeployKey } from '@/features/projects/api/use_project_keys'
+import { useProjectDeployKey, useSetupProjectDeployKey } from '@/modules/projects/api/use_project_keys'
 import { toast } from '@/hooks/use_toast'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/card'
 import Button from '@/components/button'

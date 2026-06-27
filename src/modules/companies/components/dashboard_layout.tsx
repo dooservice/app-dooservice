@@ -5,8 +5,9 @@ import {
   Breadcrumb, BreadcrumbList, BreadcrumbItem,
   BreadcrumbSeparator, BreadcrumbPage,
 } from '@/components/breadcrumb'
-import AccountDropdown from '@/features/companies/components/account_dropdown'
+import AccountDropdown from '@/modules/companies/components/account_dropdown'
 import PreviewBanner from '@/components/preview_banner'
+import { Slot } from '@/core'
 
 type BreadcrumbEntry = { label: string | React.ReactNode; href?: string }
 
@@ -51,6 +52,7 @@ export default function DashboardLayout({ children, breadcrumbs, title, descript
               </Breadcrumb>
             </div>
             <div className="flex items-center space-x-3">
+              <Slot name="dashboard:navbar:actions" />
               <AccountDropdown />
             </div>
           </div>
@@ -73,7 +75,9 @@ export default function DashboardLayout({ children, breadcrumbs, title, descript
       {/* Content */}
       <div className="flex w-full items-center">
         <div className="mx-auto w-full max-w-screen-xl px-6 lg:px-24 flex flex-col gap-y-3 my-8">
+          <Slot name="dashboard:content:before" />
           {children}
+          <Slot name="dashboard:content:after" />
         </div>
       </div>
     </main>

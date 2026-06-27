@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 import { RUNTIME } from '@/lib/constants'
-import type { Environment } from '@/features/environments/types/environment.types'
+import type { Environment } from '@/modules/environments/types/environment.types'
 
 interface Props {
   env: Environment

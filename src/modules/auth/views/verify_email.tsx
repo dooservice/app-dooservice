@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { AuthLayout, useVerifyEmail, useResendVerification } from '@/features/auth'
+import { AuthLayout, useVerifyEmail, useResendVerification } from '@/modules/auth'
 import OtpInput from '@/components/otp_input'
 import Button from '@/components/button'
 

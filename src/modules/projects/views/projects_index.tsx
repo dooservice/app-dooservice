@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { PlusCircleIcon } from 'lucide-react'
-import DashboardLayout from '@/features/companies/components/dashboard_layout'
+import DashboardLayout from '@/modules/companies/components/dashboard_layout'
 import Spinner from '@/components/spinner'
-import ProjectCard from '@/features/projects/components/project_card'
-import ProjectsEmptyState from '@/features/projects/components/projects_empty_state'
-import { useProjects } from '@/features/projects/api/use_projects'
+import ProjectCard from '@/modules/projects/components/project_card'
+import ProjectsEmptyState from '@/modules/projects/components/projects_empty_state'
+import { useProjects } from '@/modules/projects/api/use_projects'
 
 export default function ProjectsIndexPage() {
   const { t } = useTranslation('projects')

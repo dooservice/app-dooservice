@@ -1,4 +1,4 @@
-import type { RuntimeState, EnvMode } from '@/features/environments/types/environment.types'
+import type { RuntimeState, EnvMode } from '@/modules/environments/types/environment.types'
 
 export const RUNTIME: Record<RuntimeState, { dot: string; text: string; label: string }> = {
   running:      { dot: 'bg-emerald-500', text: 'text-emerald-700', label: 'Running' },

@@ -2,8 +2,8 @@ import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 import { RefreshCwIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { useLogs } from '@/features/environments/api/use_logs'
-import type { Environment } from '@/features/environments/types/environment.types'
+import { useLogs } from '@/modules/environments/api/use_logs'
+import type { Environment } from '@/modules/environments/types/environment.types'
 import Button from '@/components/button'
 
 interface Props {

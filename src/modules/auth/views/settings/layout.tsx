@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import DashboardLayout from '@/features/companies/components/dashboard_layout'
+import DashboardLayout from '@/modules/companies/components/dashboard_layout'
 import { SettingsNav } from './nav'
 
 export default function SettingsLayout({ children }: { children: React.ReactNode }) {

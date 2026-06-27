@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import DashboardLayout from '@/features/companies/components/dashboard_layout'
-import CreateProjectForm from '@/features/projects/components/create_project_form'
+import DashboardLayout from '@/modules/companies/components/dashboard_layout'
+import CreateProjectForm from '@/modules/projects/components/create_project_form'
 
 export default function ProjectCreatePage() {
   const { t } = useTranslation('projects')
