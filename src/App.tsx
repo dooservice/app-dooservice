@@ -1,10 +1,12 @@
 import { RouterProvider } from 'react-router-dom'
 import { AppProvider } from '@/app/provider'
-import { buildRouter } from '@/app/router'
+import type { buildRouter } from '@/app/router'
 
-const router = buildRouter()
+interface AppProps {
+  router: ReturnType<typeof buildRouter>
+}
 
-export default function App() {
+export default function App({ router }: AppProps) {
   return (
     <AppProvider>
       <RouterProvider router={router} />
