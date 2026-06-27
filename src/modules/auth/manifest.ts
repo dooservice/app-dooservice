@@ -10,6 +10,7 @@ export const manifest: ModuleManifest = {
     { path: '/verify-email',    page: () => import('./views/verify_email'),    guest: true },
     { path: '/forgot-password', page: () => import('./views/forgot_password'), guest: true },
     { path: '/reset-password',  page: () => import('./views/reset_password'),  guest: true },
+    { path: '/settings',         redirect: '/settings/account' },
     { path: '/settings/account', page: () => import('./views/settings/account') },
   ],
 }

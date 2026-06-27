@@ -4,7 +4,8 @@ export type InheritPosition = 'replace' | 'before' | 'after' | 'inside'
 
 export interface RouteDefinition {
   path: string
-  page: () => Promise<{ default: React.ComponentType }>
+  page?: () => Promise<{ default: React.ComponentType }>
+  redirect?: string
   protected?: boolean
   guest?: boolean
 }
