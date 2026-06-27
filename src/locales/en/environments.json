@@ -4,6 +4,7 @@
     "backups":     "Backups",
     "logs":        "Logs",
     "deployments": "Deployments",
+    "submodules":  "Submodules",
     "settings":    "Settings"
   },
   "selectFirst": "Select an environment first.",

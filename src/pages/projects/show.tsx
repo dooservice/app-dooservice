@@ -14,6 +14,7 @@ import EnvLogsTab from '@/features/environments/components/env_logs_tab'
 import EnvBackupsTab from '@/features/environments/components/env_backups_tab'
 import EnvDeploymentsTab from '@/features/environments/components/env_deployments_tab'
 import EnvSettingsTab from '@/features/environments/components/env_settings_tab'
+import SubmoduleKeysCard from '@/features/projects/components/submodule_keys_card'
 import NoEnvsPlaceholder from '@/features/environments/components/no_envs_placeholder'
 import ProvisionDialog from '@/features/environments/components/provision_dialog'
 import ProvisionProgressModal from '@/features/environments/components/provision_progress_modal'
@@ -74,7 +75,7 @@ export default function ProjectShowPage() {
           <div className="w-px bg-zinc-200 dark:bg-zinc-700 self-stretch" />
 
           <div className="flex-1 min-w-0">
-            <EnvTabNav activeTab={activeTab} onChange={setActiveTab} hideSettings={!!project?.locked} />
+            <EnvTabNav activeTab={activeTab} onChange={setActiveTab} hideSettings={!!project?.locked} hasRepository={!!project?.has_repository} />
             <div className="pt-5">
               {activeTab === 'overview' && (
                 selectedEnv
@@ -84,6 +85,11 @@ export default function ProjectShowPage() {
               {activeTab === 'logs'        && <EnvLogsTab        env={selectedEnv} projectId={projectId ?? ''} />}
               {activeTab === 'backups'     && <EnvBackupsTab     env={selectedEnv} projectId={projectId ?? ''} />}
               {activeTab === 'deployments' && <EnvDeploymentsTab env={selectedEnv} projectId={projectId ?? ''} />}
+              {activeTab === 'submodules' && !project?.locked && (
+                <div className="max-w-2xl">
+                  <SubmoduleKeysCard projectId={projectId ?? ''} />
+                </div>
+              )}
               {activeTab === 'settings' && !project?.locked && <EnvSettingsTab env={selectedEnv} />}
             </div>
           </div>

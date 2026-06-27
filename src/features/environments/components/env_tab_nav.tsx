@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
-import { DatabaseBackupIcon, GitCommitIcon, InfoIcon, ScrollTextIcon, Settings2Icon } from 'lucide-react'
+import { DatabaseBackupIcon, GitBranchIcon, GitCommitIcon, InfoIcon, ScrollTextIcon, Settings2Icon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-export type TabId = 'overview' | 'logs' | 'backups' | 'deployments' | 'settings'
+export type TabId = 'overview' | 'logs' | 'backups' | 'deployments' | 'settings' | 'submodules'
 
 const TAB_ICONS: Record<TabId, React.ElementType> = {
   overview:    InfoIcon,
@@ -11,19 +11,25 @@ const TAB_ICONS: Record<TabId, React.ElementType> = {
   backups:     DatabaseBackupIcon,
   deployments: GitCommitIcon,
   settings:    Settings2Icon,
+  submodules:  GitBranchIcon,
 }
 
-const TAB_IDS: TabId[] = ['overview', 'deployments', 'logs', 'backups', 'settings']
+const TAB_IDS: TabId[] = ['overview', 'deployments', 'logs', 'backups', 'submodules', 'settings']
 
 interface Props {
-  activeTab:     TabId
-  onChange:      (tab: TabId) => void
-  hideSettings?: boolean
+  activeTab:        TabId
+  onChange:         (tab: TabId) => void
+  hideSettings?:    boolean
+  hasRepository?:   boolean
 }
 
-export default function EnvTabNav({ activeTab, onChange, hideSettings }: Props) {
+export default function EnvTabNav({ activeTab, onChange, hideSettings, hasRepository }: Props) {
   const { t } = useTranslation('environments')
-  const tabIds = hideSettings ? TAB_IDS.filter(id => id !== 'settings') : TAB_IDS
+  const tabIds = TAB_IDS.filter(id => {
+    if (id === 'settings')   return !hideSettings
+    if (id === 'submodules') return !hideSettings && !!hasRepository
+    return true
+  })
 
   return (
     <nav className="border-b border-zinc-200 dark:border-zinc-700">

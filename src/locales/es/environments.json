@@ -4,6 +4,7 @@
     "backups":     "Copias de seguridad",
     "logs":        "Registros",
     "deployments": "Despliegues",
+    "submodules":  "Submódulos",
     "settings":    "Configuración"
   },
   "selectFirst": "Selecciona un entorno primero.",
